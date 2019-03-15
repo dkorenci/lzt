@@ -1,0 +1,89 @@
+NodeArray na;
+NodeArrayFileWriter writer;
+
+writer.write(na);
+
+bseq = na.toBitSequence();
+fstream file("file.txt");
+file.write(bseq);
+
+writeBitSequenceToFile
+    write
+
+problems:
+    write/read integer data type to file in a system independent way
+
+template <typename TNodeArray>
+writeNodeArrayToFile(TNodeArray const & array) {
+    write(array.getSize());
+
+    for(i = 0; i < array.getSize()) {
+        
+    }
+}
+
+// writing integer type
+template <typename T>
+write(T n) {
+    typedef BitSequence<char, sizeof(T)> BS;
+    BS seq = toBitSequence<T, BS>(n);
+    typedef BitSequence<char, 1> BSS;
+    BSS sseq = toBitSequence<char, BSS>((unsigned char)sizeof(T));
+
+    stream.write(sseq.getBlocks(), 1);
+    stream.wirte(seq.getBlocks(), sizeof(T));
+}
+
+void writeToFile(BitSequenceArray a, string fileName) {
+    BitSequence bs[3];
+
+    bs[0] = toBitSequence(a.numOfBlocks);
+    bs[1] = toBitSequence(a.numOfSequences);
+    bs[2] = toBitSequence(a.sequenceSize);
+
+    CharBuffer cb[3];
+    for (int i = 0; i < 3; ++i)
+        cb[i] = bs[i].toCharBuffer();
+
+    size_t size = 0;
+    for (int i = 0; i < 3; ++i)
+        // for each integer, getSize bytes are for integer and 1 byte is for number of these bytes
+        size += cb[i].getSize() + 1;
+
+    size += a.getNumOfBlocks();
+
+    BitSequence sizeBs = toBitSequence(size);
+    CharBuffer sizeBuff = sizeBs.toCharBuffer();
+    // write the size of all data
+    ofstream file(fileName);
+    file.write(sizeBuff.getBuffer, sizeBuff.geSize);
+
+    for (int i = 0; i < 3; ++i) {
+        // write the size of the serialized variable
+        sizeBuff = toBitSequence(cb[i].getSize).toCharBuffer();
+        file.write(sizeBuff.getBuffer, sizeBuff.geSize);
+        // write the variable
+        file.write(cb[i].getBuffer, cb[i].getSize);
+    }
+
+    // write number of blocks
+
+    //write blocks
+    file.write(a.getBlocks, a.getNumOfBlocks);
+}
+
+void writeToStream(CompactArray ca, ostream os) {
+
+    // write variables as in BSArray serialization
+    BitSequenceArray array(numOfDistinct, symbolBitsSize<TSymbol>()+siblingBitsSize<TSymbol>());
+    // serialize array of nodes and symbols
+    for (i = 0; i < numOfDistinct; ++i) {
+        BitSequence symbolBits = symbolToBits(symbols[i]);
+        BitSequence siblingBits = siblingToBits(siblings[i]);
+        symbolBits |= (siblingBits << symbolBitsSize<TSymbol>());
+        array.setSequence(i, symbolBits);
+    }
+
+    writeToStream(array, os);
+
+}

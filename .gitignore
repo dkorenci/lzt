@@ -1,0 +1,31 @@
+# build outputs
+
+shell_lzt/build
+shell_lzt/dist
+
+shell_lztd/build
+shell_lztd/dist
+
+.dep.inc
+make.out
+
+# executables
+lzt
+lztd
+
+# expected suffixes of lzt-compressed lexicons and dictionaries
+
+*.lzt
+*.lze
+*.lzd
+
+
+
+
+
+
+
+
+
+
+

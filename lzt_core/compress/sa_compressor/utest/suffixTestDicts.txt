@@ -1,0 +1,7 @@
+5
+
+onelongword.txt
+esp_small.txt
+french_small.txt
+polishMorph_small.txt
+english.txt

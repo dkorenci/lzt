@@ -1,0 +1,15 @@
+
+abc|cde
+
+|abc
+abc|
+
+a|b|
+abc|cde
+
+x|y
+abcdef|x
+a|xyuvz
+
+itako|dalje
+

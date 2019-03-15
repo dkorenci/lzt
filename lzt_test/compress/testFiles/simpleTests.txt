@@ -1,0 +1,118 @@
+
+// few simple cases
+1
+a
+1
+|a.#.10|
+
+1
+ababc
+1
+|a.#.01|b.#.01|1.0.00|c.#.10|
+
+1
+abababababab
+1
+|a.#.01|b.#.01|1.0.00|1.0.00|1.2.00|a.#.01|b.#.10|
+
+1
+aaaaa
+1
+|a.#.01|a.#.01|1.0.00|a.#.10|
+
+1
+aaaaaaaaa
+1
+|a.#.01|a.#.01|1.0.00|1.0.00|1.0.00|a.#.10|
+
+// cases with pointers pointing to chars in replaced sequence
+
+// sibling pointer can point to the first char of a replaced sequence
+2
+abcde
+bcde
+1
+|a.5.01|b.#.01|c.#.01|d.#.01|e.#.10|3.1.00|
+
+// sibling pointer can't point to any char of a replaced
+// sequence that is after the last char
+4
+abxy
+auvz
+cdxy
+cuvz
+1
+|a.7.01|b.3.01|x.#.01|y.#.10|u.#.01|v.#.01|z.#.10|c.#.01|d.2.01|1.2.00|2.4.00|
+
+
+// cases with pointer pointing from replaced sequences
+
+// sibling pointer from within the replaced sequence can point to
+// one char past the end of the sequence
+6
+abcd
+abcde
+ac
+bbcd
+bbcde
+bd
+1
+|a.6.01|b.4.01|c.#.01|d.#.11|e.#.10|c.#.10|b.#.01|3.1.00|d.#.10|
+
+// sibling pointer from within the replaced sequence can't point
+// past one char after the end of the sequence
+4
+xabcdefgx
+xabczx
+yabcdefgy
+yabcy
+1
+|x.11.01|a.#.01|b.#.01|c.#.01|d.5.01|e.#.01|f.#.01|g.#.01|x.#.10|z.#.01|x.#.10|y.#.01|2.1.00|d.3.01|2.5.00|y.#.10|y.#.10|
+
+// sequence that contains pointers and chars is replaced
+1
+abcdefabxcdxefxabxcdxefx
+1
+|a.#.01|b.#.01|c.#.01|d.#.01|e.#.01|f.#.01|1.0.00|x.#.01|1.2.00|x.#.01|1.4.00|x.#.01|4.6.00|x.#.10|
+
+// case where lot of pointers are replaced, and replacing sequence borders are
+// set on pointers and prevent some longer replacements
+1
+absxyzwuabxyzabxyzuabxyzabxyzwuabxyzabxyzuabxyzabxyze
+1
+|a.#.01|b.#.01|s.#.01|x.#.01|y.#.01|z.#.01|w.#.01|u.#.01|1.0.00|2.3.00|1.0.00|2.3.00|3.7.00|5.3.00|2.3.00|1.8.00|4.7.00|e.#.10|
+
+
+// cases when replacing sequence is shortened by inner replacement so the
+// corresponding replaced sequence size must be corrected
+
+// basic example
+1
+abcbcabcbcd
+1
+|a.#.01|b.#.01|c.#.01|1.1.00|3.0.00|d.#.10|
+
+// more complicated example, 2 levels of replacement
+1
+abcdcdbcdcdabcdcdbcdcdx
+1
+|a.#.01|b.#.01|c.#.01|d.#.01|1.2.00|3.1.00|5.0.00|x.#.10|
+
+
+// last char of a replacing sequence must be the
+// last char of a replaced sequence when being replaced
+// when this is the case match inside replacing sequence must occur,
+// so sequence size correction will be necessary
+1
+abcdbcdabcdbce
+1
+|a.#.01|b.#.01|c.#.01|d.#.01|1.1.00|d.#.01|4.0.00|e.#.10|
+
+// lot of corrections because of inner replacements, lot of pointer replacements
+1
+absxyztwuabxyzabxyzuabxyzabxyzwuabxyzabxyzuabxyzabxyze
+1
+|a.#.01|b.#.01|s.#.01|x.#.01|y.#.01|z.#.01|t.#.01|w.#.01|u.#.01|1.0.00|2.3.00|1.9.00|3.8.00|5.7.00|e.#.10|
+
+
+

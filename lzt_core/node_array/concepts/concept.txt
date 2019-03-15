@@ -1,0 +1,5 @@
+These interfaces are provided as a precise description of
+methods and typedefs that NodeArray and Node types have to define.
+Interfaces are not supposed to be inherited by implementations of
+NodeArray and Node concepts. This polymorphic approach would lead to
+performance degradations caused by invocation of virtual methods.

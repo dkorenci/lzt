@@ -1,0 +1,29 @@
+...
+// seq. array is created with given size and given bit size of a single sequence
+BitSequenceArray sequenceArray(array.getSize(),  sizeof(n.getSibling) + sizeof(n.getSymbol) + 2);
+...
+
+// write node to array
+BitSequence sequences[2] = { toBits(n.getSibling()), toBits(n.getSymbol()) };
+bool ow[2] = { n.getCow(), n.getEow() };
+
+sequenceArray.setSequences(i, sequences, 2);
+sequenceArray.setSequencesBigE(i, ow, 2);
+
+// read node from array;
+BitSequence sequences[2];
+bool ow[2]
+
+sequenceArray.fillSequence(i, sequence[0], 32);
+sequenceArray.getSequencesBigE(i, ow, 2);
+
+n.setSibling(fromBits<TIndex>(sequences[0]));
+n.setSymbol(fromBits<TSymbol>(sequences[1]));
+n.setCow(ow[0]);
+n.setEow(ow[1]);
+
+// test
+BitSequenceTests tests;
+tests.testBitSequence();
+...
+

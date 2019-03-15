@@ -1,0 +1,28 @@
+// comment
+3
+abc
+//
+cde
+//ahaha
+efg
+2
+ipak
+nista
+// bezveze
+1
+itako
+0
+//
+5
+a
+b
+// haha
+c
+d
+e
+1
+// kobireko
+a
+
+
+// opa

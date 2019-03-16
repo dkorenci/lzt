@@ -1,5 +1,5 @@
 
-LZTD package is an implementation of a state-of-art dictionary compression method based on LZ-Trie data structure.
+LZT package is an implementation of a state-of-art dictionary compression method based on LZ-Trie data structure.
 The method represents an (enumerated) set of words as an (enumerated) determinisitic finite automaton - (E)DFA.
 The automaton is repesented as a LZ-Trie data structure (word Trie viewed as string) 
 and compressed with Lempel-Ziv-like method based on a fast compression algorithm.

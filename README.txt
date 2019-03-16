@@ -63,6 +63,6 @@ Varying of TSymbol can be used for compression of non-character strings.
 Definition of TSymbol can also, to a small degree, influence the size of the compressed structure
 since TSymbol fields are used to store replaced substring lengths of lz pointers (see the original algorithm for details).
 
-The vizualization folder contains core for vizualization/introspection 
-of the algorithms and data structures by supporting graphical (dot format)
-and string representations of trie structures. 
+The vizualization folder contains code for algorithm introspection, 
+i.e. for creating graphical (dot format) and string representations of the trie structure. 
+

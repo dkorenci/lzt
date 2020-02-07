@@ -19,7 +19,8 @@ lztd
 *.lze
 *.lzd
 
-
+# project files
+/nbproject
 
 
 
